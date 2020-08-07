@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User's list</title>
+</head>
+<body>
+<h3>User's list</h3>
+
+<form action="addUser" method="GET">
+    <button type="submit">Add new user</button>
+</form>
+
+<table border="1" cellspacing="0" cellpadding="2">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Role</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+    <tr th:each="userRole : ${userRoles}">
+        <td th:text="${userRole.user.id}"></td>
+        <td th:text="${userRole.user.name}"></td>
+        <td th:text="${userRole.user.email}"></td>
+        <td th:text="${userRole.user.password}"></td>
+        <td>
+            <th:block th:each="role : ${userRole.roles}">
+                <h1 th:text="${role.name}"></h1>
+            </th:block>
+        </td>
+        <td>
+
+            <form action="#" th:action="@{/delete}" th:object="${userRole}" method="post">
+                <button type="submit">Delete</button>
+                <input type="hidden" id="id" name="id" th:value="${userRole.user.id}">
+            </form>
+        </td>
+        <td>
+            <form action="#" th:action="@{/editing}" th:object="${userRole}" method="POST">
+                <button type="submit">Edit</button>
+                <input type="hidden" id="edit_id" name="edit_id" th:value="${userRole.user.id}">
+            </form>
+        </td>
+    </tr>
+</table>
+<a th:href="@{/logout}">Logout</a>
+</body>
+</html>
