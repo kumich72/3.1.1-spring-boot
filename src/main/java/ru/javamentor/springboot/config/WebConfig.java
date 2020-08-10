@@ -15,14 +15,18 @@ import org.springframework.web.servlet.view.JstlView;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan("ru.javamentor.springboot")
 public class WebConfig implements WebMvcConfigurer {
 
-    @Autowired
-    private ApplicationContext applicationContext;
+    private final ApplicationContext applicationContext;
+
+    public WebConfig(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -36,6 +40,7 @@ public class WebConfig implements WebMvcConfigurer {
 
         templateResolver.setPrefix("/WEB-INF/templates/");
         templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode("HTML5");
         return templateResolver;
     }
 
