@@ -30,7 +30,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/WEB-INF/pages/**").addResourceLocations("/pages/").addResourceLocations("/resources/**");
+//        registry.addResourceHandler("/WEB-INF/pages/**").addResourceLocations("/pages/").addResourceLocations("/resources/**");
+        registry.addResourceHandler("/templates/**").addResourceLocations("/templates/").addResourceLocations("/resources/**");
     }
 
     @Bean
@@ -38,7 +39,9 @@ public class WebConfig implements WebMvcConfigurer {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
 
-        templateResolver.setPrefix("/WEB-INF/templates/");
+//        templateResolver.setPrefix("/resources/templates/");
+        templateResolver.setPrefix("classpath:/templates/");
+//        templateResolver.setPrefix("/WEB-INF/templates/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML5");
         return templateResolver;
