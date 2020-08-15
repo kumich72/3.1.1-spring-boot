@@ -41,13 +41,4 @@ public class HibernateConfig {
 //        configuration.setProperty("hibernate.hbm2ddl.auto", "update");
         return configuration;
     }
-
-//    @Bean(name = "getSessionHibernateFactory")
-//    public SessionFactory getSessionHibernateFactory() {
-//        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
-//        org.hibernate.cfg.Configuration configuration = getConfiguration();
-//        builder.applySettings(configuration.getProperties());
-//        ServiceRegistry serviceRegistry = builder.build();
-//        return configuration.buildSessionFactory(serviceRegistry);
-//    }
 }
